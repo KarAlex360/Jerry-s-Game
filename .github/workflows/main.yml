@@ -1,20 +1,20 @@
-name: Pylint
+name: pylint & black
 
-on: [push]
+on: 
+  push:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, universal]
     strategy:
       matrix:
         python-version: ["3.10"]
     steps:
     - uses: actions/checkout@v4
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pylint
-        pip install black
+    - name: Check format
+      uses: psf/black@20.8b1
+      with:
+        args: ". --check"
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files '*.py')
