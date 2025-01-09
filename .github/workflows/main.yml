@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Check format
-      uses: psf/black@20.8b1
+      uses: psf/black@stable
       with:
         args: ". --check"
     - name: Analysing the code with pylint
